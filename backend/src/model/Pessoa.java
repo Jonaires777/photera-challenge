@@ -1,11 +1,13 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Pessoa {
 
     private String nome;
     private LocalDate dataDeNascimento;
+        private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Pessoa() {
     }
@@ -45,6 +47,6 @@ public class Pessoa {
 
     @Override
     public String toString(){
-        return "asdasd";
+        return "Nome: " + nome + "\nData de Nascimento: " + dataDeNascimento.format(dtf);
     }
 }
