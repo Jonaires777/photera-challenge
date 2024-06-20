@@ -24,13 +24,14 @@ public class App {
                 nf.setMaximumFractionDigits(2);
 
                 List<Funcionario> funcionarios = new ArrayList<>();
-
                 addFuncionarios(funcionarios, dtf);
+                List<Funcionario> funcionariosAntigos = new ArrayList<>();
+                addFuncionarios(funcionariosAntigos, dtf);
 
                 System.out.println("*====DESAFIO PHOTERA====*");
                 System.out.println("===================================================================");
                 System.out.println("Lista com todos os funcionários:\n");
-                funcionarios.forEach(x -> System.out.println(x.toString()));
+                funcionariosAntigos.forEach(x -> System.out.println(x.toString()));
 
                 Iterator<Funcionario> iterator = funcionarios.iterator();
                 while (iterator.hasNext()) {
@@ -44,7 +45,7 @@ public class App {
                 System.out.println("Lista com todos os funcionários cujo nome é diferente de João:\n");
                 funcionarios.forEach(x -> System.out.println(x.toString()));
 
-                Iterator<Funcionario> iterator2 = funcionarios.iterator();
+                Iterator<Funcionario> iterator2 = funcionariosAntigos.iterator();
                 while (iterator2.hasNext()) {
                         Funcionario funcionario = iterator2.next();
                         funcionario.setSalario(funcionario.getSalario()
@@ -53,11 +54,11 @@ public class App {
 
                 System.out.println("===================================================================");
                 System.out.println("Lista com todos os funcionários com aumento de salário:\n");
-                funcionarios.forEach(x -> System.out.println(x.toString()));
+                funcionariosAntigos.forEach(x -> System.out.println(x.toString()));
                 System.out.println("===================================================================");
 
                 Map<String, List<Funcionario>> map = new HashMap<>();
-                for (Funcionario funcionario : funcionarios) {
+                for (Funcionario funcionario : funcionariosAntigos) {
                         String funcao = funcionario.getFuncao();
                         if (!map.containsKey(funcao)) {
                                 map.put(funcao, new ArrayList<>());
@@ -78,7 +79,7 @@ public class App {
                 System.out.println("===================================================================");
 
                 List<Funcionario> aniversariantes = new ArrayList<>();
-                funcionarios.forEach(x -> {
+                funcionariosAntigos.forEach(x -> {
                         int day = x.getDataDeNascimento().getDayOfMonth();
                         if (day == 10 || day == 12) {
                                 aniversariantes.add(x);
@@ -96,7 +97,7 @@ public class App {
                 int idade = 0;
                 Funcionario funcionarioMaisVelho = new Funcionario();
                 System.out.println("Funionário mais velho:");
-                for (Funcionario funcionario : funcionarios) {
+                for (Funcionario funcionario : funcionariosAntigos) {
                         int funcionarioIdade = calcularIdade(funcionario.getDataDeNascimento(), LocalDate.now());
                         if (funcionarioIdade > idade) {
                                 idade = funcionarioIdade;
@@ -108,14 +109,14 @@ public class App {
                 System.out.println("===================================================================");
 
                 System.out.println("Lista de todos os funcionários em ordem alfabética:\n");
-                List<Funcionario> funcionariosEmOrdem = funcionarios.stream()
+                List<Funcionario> funcionariosEmOrdem = funcionariosAntigos.stream()
                                 .sorted(Comparator.comparing(Funcionario::getNome)).collect(Collectors.toList());
                 funcionariosEmOrdem.forEach(x -> System.out.println(x.toString()));
                 System.out.println("===================================================================");
 
                 System.out.println("Total dos salários:");
                 BigDecimal somaDosSalarios = BigDecimal.valueOf(0);
-                for (Funcionario funcionario : funcionarios) {
+                for (Funcionario funcionario : funcionariosAntigos) {
                         somaDosSalarios = somaDosSalarios.add(funcionario.getSalario());
                 }
                 System.out.println(nf.format(somaDosSalarios));
@@ -123,7 +124,7 @@ public class App {
                 System.out.println("===================================================================");
 
                 System.out.println("Lista de salários mínimos que cada funcionário ganha:\n");
-                for (Funcionario funcionario : funcionarios) {
+                for (Funcionario funcionario : funcionariosAntigos) {
                         BigDecimal salariosMinimos = funcionario.getSalario().divide(BigDecimal.valueOf(1212.00), 2,
                                         RoundingMode.HALF_UP);
                         System.out.println("Nome: " + funcionario.getNome() + "\nNúmero de salários mínimos: "
