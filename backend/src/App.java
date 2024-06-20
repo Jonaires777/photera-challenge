@@ -28,7 +28,7 @@ public class App {
                 List<Funcionario> funcionariosAntigos = new ArrayList<>();
                 addFuncionarios(funcionariosAntigos, dtf);
 
-                System.out.println("*====DESAFIO PHOTERA====*");
+                System.out.println("*====DESAFIO PROTERA====*");
                 System.out.println("===================================================================");
                 System.out.println("Lista com todos os funcionários:\n");
                 funcionariosAntigos.forEach(x -> System.out.println(x.toString()));
